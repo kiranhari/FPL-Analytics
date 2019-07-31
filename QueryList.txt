@@ -1,0 +1,14 @@
+
+db.Players.aggregate([
+					 {$match:{ points_per_game: { $gt: 0 } } },
+                     { "$project": {"web_name":1,total: { $divide: ["$total_points","$points_per_game" ]},_id:0,element_type:1 } },
+                     { $sort: { total: -1 } }
+                   ])
+
+
+db.Players.aggregate([
+					 {$match:{ points_per_game: { $gt: 0 } } },
+                     { "$project": {"web_name":1,total: { $divide: ["$minutes","$total_points"]},_id:0,element_type:1 } },
+                     { $sort: { total: -1 } }
+                   ])				   
+				   
